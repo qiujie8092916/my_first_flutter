@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
-class Home extends StatelessWidget {
+class RandomWordsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(body: new RandomWords());
   }
+}
+
+class RandomWords extends StatefulWidget {
+  @override
+  createState() => new RandomWordsState();
 }
 
 class RandomWordsState extends State<RandomWords> {
@@ -14,14 +19,6 @@ class RandomWordsState extends State<RandomWords> {
   final _saved = new Set<WordPair>();
 
   final TextStyle _biggerFont = const TextStyle(fontSize: 18.0);
-
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   Widget _buildSuggestions() {
     return new ListView.builder(
@@ -64,7 +61,7 @@ class RandomWordsState extends State<RandomWords> {
             title: new Text(pair.asPascalCase, style: _biggerFont));
       });
       final divided =
-          ListTile.divideTiles(context: context, tiles: tiles).toList();
+      ListTile.divideTiles(context: context, tiles: tiles).toList();
 
       return new Scaffold(
         appBar: new AppBar(
@@ -84,24 +81,6 @@ class RandomWordsState extends State<RandomWords> {
             new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved)
           ]),
       body: _buildSuggestions(),
-      bottomNavigationBar: BottomNavigationBar(
-        // 底部导航
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: new Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: new Icon(Icons.business), label: 'Business'),
-          BottomNavigationBarItem(
-              icon: new Icon(Icons.school), label: 'School'),
-        ],
-        currentIndex: _selectedIndex,
-        fixedColor: Colors.blue,
-        onTap: _onItemTapped,
-      ),
     );
   }
-}
-
-class RandomWords extends StatefulWidget {
-  @override
-  createState() => new RandomWordsState();
 }
