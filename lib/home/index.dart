@@ -1,24 +1,34 @@
 import 'package:flutter/material.dart';
 
+/// 模块拼接
+import './lego.dart';
+/// 入口菜单
+import './menus.dart';
+/// 头部导航
+import './nav_bar.dart';
+/// 顶部轮播图
+import './banners.dart';
+/// 优惠券直播
+import './live.dart';
+/// 为你推荐
+import './recommend.dart';
+/// 行程卡片
+import './journey_car.dart';
+/// 胶囊轮播
+import './capsule_banner.dart';
+
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-          leading: new IconButton(
-            icon: new Icon(Icons.menu),
-            onPressed: null,
-            tooltip: 'Navigation menu',
-          ),
-          title: new Text('Example title'),
-          actions: <Widget>[
-            new IconButton(
-                icon: new Icon(Icons.search),
-                tooltip: 'Search',
-                onPressed: null),
-          ]),
-      body: new Counter(),
-      floatingActionButton: new FloatingActionButton(
+      appBar: Navbar(leadingWidth: MediaQuery.of(context).size.width),
+      body: ListView(
+        children: [
+          Banners(),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
         onPressed: null,
         child: new Icon(Icons.add),
         tooltip: 'Add',
@@ -29,7 +39,7 @@ class HomePage extends StatelessWidget {
 
 class Counter extends StatefulWidget {
   @override
-  _CounterState createState () => new _CounterState();
+  _CounterState createState() => new _CounterState();
 }
 
 class _CounterState extends State<Counter> {
@@ -53,7 +63,7 @@ class _CounterState extends State<Counter> {
 }
 
 class CounterDisplay extends StatelessWidget {
-  CounterDisplay({ this.count });
+  CounterDisplay({this.count = 0});
 
   final int count;
 
@@ -64,7 +74,7 @@ class CounterDisplay extends StatelessWidget {
 }
 
 class CounterIncrementor extends StatelessWidget {
-  CounterIncrementor({ this.onPressed });
+  CounterIncrementor({required this.onPressed});
 
   final VoidCallback onPressed;
 
@@ -72,12 +82,7 @@ class CounterIncrementor extends StatelessWidget {
   Widget build(BuildContext context) {
     return new RaisedButton(
       onPressed: onPressed,
-      child: new Text(
-          'Increment'
-      ),
+      child: new Text('Increment'),
     );
   }
 }
-
-
-
