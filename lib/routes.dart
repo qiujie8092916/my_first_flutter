@@ -67,9 +67,9 @@ class BottomNavBarItem {
 
 class BottomNavBar extends StatefulWidget {
   BottomNavBar({
-    required this.items,
+    @required this.items,
     this.currentIndex = 0,
-    required this.onTap,
+    @required this.onTap,
   });
 
   final int currentIndex;

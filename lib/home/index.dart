@@ -74,7 +74,7 @@ class CounterDisplay extends StatelessWidget {
 }
 
 class CounterIncrementor extends StatelessWidget {
-  CounterIncrementor({required this.onPressed});
+  CounterIncrementor({@required this.onPressed});
 
   final VoidCallback onPressed;
 
