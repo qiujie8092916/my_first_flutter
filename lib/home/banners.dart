@@ -7,7 +7,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 
 /// request && model
 import 'package:my_first_flutter/request/index.dart';
-import 'package:my_first_flutter/home/model/Banner_list_model.dart';
+import 'package:my_first_flutter/home/model/banner_list_model.dart';
 
 class Banners extends StatefulWidget {
   @override
@@ -23,12 +23,9 @@ class _BannersState extends State<Banners> {
       "bannerType": "top"
     }).execute();
 
-    print(json.encode(res));
-
     setState(() {
       _bannerList = BannerListModel.fromJson(res);
     });
-    print(MediaQuery.of(context).size);
   }
 
   @override
@@ -44,9 +41,9 @@ class _BannersState extends State<Banners> {
     return Container(
       height: $.px(140),
       margin: EdgeInsets.only(
-        left: 12,
-        right: 12,
-        bottom: 10,
+        left: $.px(12),
+        right: $.px(12),
+        bottom: $.px(10),
       ),
       child: ClipRRect(
           borderRadius: BorderRadius.circular(8),

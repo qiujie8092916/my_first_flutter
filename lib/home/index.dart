@@ -18,7 +18,7 @@ import './live.dart';
 import './recommend.dart';
 
 /// 行程卡片
-import './journey_car.dart';
+// import './journey_car.dart';
 
 /// 胶囊轮播
 import './capsule_banner.dart';
@@ -29,11 +29,12 @@ class HomePage extends StatelessWidget {
     final $ = Styles(context);
 
     return new Scaffold(
+      backgroundColor: Color.fromRGBO(244, 245, 246, 1),
       appBar: AppBar(
-        titleSpacing: 12.0,
         elevation: 0,
         toolbarHeight: 44,
-        backgroundColor: Color.fromRGBO(255, 255, 255, 1),
+        titleSpacing: 12.0,
+        backgroundColor:Color.fromRGBO(244, 245, 246, 1),
         title: GestureDetector(
           onTap: null,
           child: Row(
@@ -82,6 +83,8 @@ class HomePage extends StatelessWidget {
         children: [
           Banners(),
           Menus(),
+          // Journey(),
+          Modules(),
         ],
       ),
       floatingActionButton: FloatingActionButton(

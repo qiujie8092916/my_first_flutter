@@ -32,4 +32,41 @@ class Utils {
   static AirportInfo getAirportInfo() {
     return Utils._airportInfo;
   }
+
+  static String dateformat(int timestamp, {String format = 'yyyy-mm-dd hh:ii:ss'}) {
+    DateTime _date = DateTime.fromMillisecondsSinceEpoch(timestamp);
+    String _year = _date.year.toString();
+
+    List _weekCompared = ['日', '一', '二', '三', '四', '五', '六'];
+    Map<String,String> o = {
+      "w+" : _date.weekday.toString(),                //星期几
+      "W+" : _weekCompared[_date.weekday],                //中文星期几
+      "m+" : _date.month.toString() ,                 //月份
+      "d+" : _date.day.toString(),                    //日
+      "h+" : _date.hour.toString(),                   //小时
+      "i+" : _date.minute.toString(),                 //分
+      "s+" : _date.second.toString(),                 //秒
+      "S"  : _date.millisecond.toString()              //毫秒
+    };
+
+    if (format.indexOf(new RegExp(r'y+')) > -1) {
+      format = format.replaceAllMapped(RegExp(r'y+'), (matches){
+        String _temp = '';
+        for (var i = 0; i < 4; i++) {
+          _temp = _year[4 - i - 1] + _temp;
+        }
+        return _temp.substring(4 - matches.group(0).length);
+      });
+    }
+    o.forEach((key, val) {
+      if(format.indexOf(new RegExp('$key')) > -1) {
+        format = format.replaceAllMapped(new RegExp('$key'), (match) {
+          return match.group(0).length > 1
+              ? (("00" + val.toString()).substring(val.toString().length))
+              : val;
+        });
+      }
+    });
+    return format;
+  }
 }
