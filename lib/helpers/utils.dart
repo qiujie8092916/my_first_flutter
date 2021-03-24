@@ -1,6 +1,14 @@
 import 'package:my_first_flutter/helpers/airport_info_model.dart';
 
 class Utils {
+  /// 枚举类型转字符串
+  static String enumToString(o, {bool toLowerCase = false}) {
+    String res = o.toString().split('.').last;
+    if(toLowerCase) return res.toLowerCase();
+    return res;
+  }
+
+  /// 获取机场信息
   static AirportInfo _airportInfo = AirportInfo.fromJson({
     "groupTitle": "热门机场",
     "airportCode": "PVG",
@@ -33,6 +41,7 @@ class Utils {
     return Utils._airportInfo;
   }
 
+  ///格式化时间格式
   static String dateformat(int timestamp, {String format = 'yyyy-mm-dd hh:ii:ss'}) {
     DateTime _date = DateTime.fromMillisecondsSinceEpoch(timestamp);
     String _year = _date.year.toString();

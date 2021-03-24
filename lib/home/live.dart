@@ -42,17 +42,27 @@ class _ModulesState extends State<Modules> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Container(
-                // padding: EdgeInsets.all($.px(8)),
                 color: Color.fromRGBO(255, 255, 255, 1),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: _moduleList.dataList
+                      .asMap()
+                      .keys
                       .map(
-                        (item) => Expanded(
+                        (index) => Expanded(
                           child: Container(
-                            // width: $.px(351) / _moduleList.dataList.length,
                             padding: EdgeInsets.all($.px(8)),
+                            decoration: index != 0
+                                ? BoxDecoration(
+                                    border: Border(
+                                        left: BorderSide(
+                                            // 设置单侧边框的样式
+                                            color: Color.fromRGBO(
+                                                242, 242, 242, 1),
+                                            width: $.px(1),
+                                            style: BorderStyle.solid)))
+                                : null,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,7 +70,7 @@ class _ModulesState extends State<Modules> {
                                 Container(
                                   margin: EdgeInsets.only(bottom: $.px(4)),
                                   child: Text(
-                                    item.title,
+                                    _moduleList.dataList[index].title,
                                     style: TextStyle(
                                       height: $.px(1.25),
                                       fontWeight: FontWeight.bold,
@@ -72,7 +82,7 @@ class _ModulesState extends State<Modules> {
                                 Container(
                                   margin: EdgeInsets.only(bottom: $.px(6)),
                                   child: Text(
-                                    item.subTitle,
+                                    _moduleList.dataList[index].subTitle,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
@@ -86,9 +96,8 @@ class _ModulesState extends State<Modules> {
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
                                   child: Image.network(
-                                    item.img,
-                                    width: $.px(155),
-                                    height: $.px(96),
+                                    _moduleList.dataList[index].img,
+                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ],

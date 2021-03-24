@@ -32,6 +32,7 @@ dependencies:
   flutter_swiper: ^1.1.6
   dio: ^3.0.10
   json_annotation: ^4.0.1
+  cached_network_image: ^2.5.1
 
 dev_dependencies:
   flutter_test:
@@ -112,6 +113,10 @@ flutter:
      # message
      - images/message/message.png
      - images/message/2.0x/message.png
+
+     # placeholder
+     - images/placeholder.png
+     - images/banner_placeholder.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

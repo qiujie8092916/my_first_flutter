@@ -128,14 +128,14 @@ class BaseModel {
       {'header': HeaderInterface.fromJson({}), 'request': {}});
 
   void _generateModuleInstance() {
-    _dioInstance = new Dio();
-    _dioInstance.options.baseUrl = 'https://gateway.iskytrip.com/api';
+    this._dioInstance = new Dio();
+    this._dioInstance.options.baseUrl = 'https://gateway.iskytrip.com/api';
 
     this._interceptors();
   }
 
   void _interceptors() {
-    _dioInstance.interceptors.add(InterceptorsWrapper(
+    this._dioInstance.interceptors.add(InterceptorsWrapper(
       onRequest: (RequestOptions options) async {
         print('- - - - - - - - - - START ${this._dioInstance.options.baseUrl + this.uri} - - - - - - - - - -');
         print('【dio】【 ${Utils.dateformat(new DateTime.now().millisecondsSinceEpoch)}】${this._params.toJson().toString()}');
@@ -193,14 +193,14 @@ class BaseModel {
   }
 
   BaseModel setParams({dynamic payload = ''}) {
-    _params.request = payload;
+    this._params.request = payload;
     return this;
   }
 
   Future execute() async {
     this._generateModuleInstance();
     this._params.header = HeaderInterface.fromJson(this._generateHeader());
-    final res = await _dioInstance.post('${this.uri}', data: this._params);
+    final res = await this._dioInstance.post('${this.uri}', data: this._params);
     return this.dataformat(res);
   }
 }

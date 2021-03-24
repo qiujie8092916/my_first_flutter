@@ -20,9 +20,6 @@ import './recommend.dart';
 /// 行程卡片
 // import './journey_car.dart';
 
-/// 胶囊轮播
-import './capsule_banner.dart';
-
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -81,10 +78,11 @@ class HomePage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          Banners(),
+          Banners(bannerType: BannerType.TOP),
           Menus(),
           // Journey(),
           Modules(),
+          Banners(bannerType: BannerType.MIDDLE),
         ],
       ),
       floatingActionButton: FloatingActionButton(
